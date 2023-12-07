@@ -74,6 +74,10 @@ app.post('/artists', (req, res) => {
   return res.status(201).json(newArtist)
 });
 
+app.delete('/artists/:artistId', (req, res) => {
+  deleteArtistByArtistId(req.params.artistId);
+  return res.status(200).json({ message: "Successfully deleted"});
+});
 
 app.get('/artists/:artistId/albums', (req, res) => {
   const albums = getAlbumsByArtistId(req.params.artistId);
@@ -90,6 +94,10 @@ app.post('/artists/:artistId/albums', (req, res) => {
   res.status(201).json(newAlbum);
 });
 
+app.put('/albums/:albumId', (req, res) => {
+  const updatedAlbum = editAlbumByAlbumId(req.params.albumId, req.body);
+  res.status(200).json(updatedAlbum);
+});
 
 
 
